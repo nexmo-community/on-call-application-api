@@ -1,0 +1,28 @@
+version: "2"
+services:
+  mysql:
+    image: mysql:8.0.19
+    ports:
+      - "3307:3306"
+    env_file: .env
+  php:
+    build: php-fpm
+    ports:
+      - "9010:9000"
+    env_file: .env
+    volumes:
+      - ../API:/var/www/API:cached
+      - ./logs/API:/var/www/API/var/logs:cached
+    links:
+      - mysql
+  nginx:
+    build: nginx
+    ports:
+      - "8080:80"
+    links:
+      - php
+      - mysql
+    volumes_from:
+      - php
+    volumes:
+      - ./logs/nginx/:/var/log/nginx:cached
