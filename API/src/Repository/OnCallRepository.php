@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\OnCall;
+use Carbon\Carbon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,12 +20,12 @@ class OnCallRepository extends ServiceEntityRepository
         parent::__construct($registry, OnCall::class);
     }
 
-    public function findOnCallByWeek(\DateTime $date)
+    public function findOnCallByWeek(Carbon $date)
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.startDate <= :date')
             ->andWhere('o.endDate >= :date')
-            ->setParameter('date', $date)
+            ->setParameter('date', $date->format('Y-m-d H:i:s'))
             ->getQuery()
             ->getOneOrNullResult();
     }

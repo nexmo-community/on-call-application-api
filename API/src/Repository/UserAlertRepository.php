@@ -4,8 +4,10 @@ namespace App\Repository;
 
 use App\Entity\Alert;
 use App\Entity\UserAlert;
+use Carbon\Carbon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * @method UserAlert|null find($id, $lockMode = null, $lockVersion = null)
@@ -23,8 +25,8 @@ class UserAlertRepository extends ServiceEntityRepository
     public function findRaisedUserAlerts()
     {
         $queryBuilder = $this->createQueryBuilder('ua');
-        $lastAlertSent = new DateTime();
-        $lastAlertSent->modify('+10 minutes');
+        $lastAlertSent = (Carbon::now())
+            ->sub('10 minutes');
 
         return $queryBuilder
             ->join(Alert::class, 'a', Join::WITH, $queryBuilder->expr()->andX(
@@ -32,7 +34,7 @@ class UserAlertRepository extends ServiceEntityRepository
                 $queryBuilder->expr()->eq('a.status', ':alertStatus')
             ))
             ->where($queryBuilder->expr()->isNull('ua.voiceSentAt'))
-            ->andWhere($queryBuilder->expr()->gte('ua.smsSentAt', ':smsSentAt'))
+            ->andWhere($queryBuilder->expr()->lte('ua.smsSentAt', ':smsSentAt'))
             ->setParameter('alertStatus', 'raised')
             ->setParameter('smsSentAt', $lastAlertSent->format('Y-m-d H:i:s'))
             ->getQuery()
