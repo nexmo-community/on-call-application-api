@@ -26,7 +26,8 @@ class UserFixtures extends Fixture
                 ->setPassword($this->passwordEncoder->encodePassword(
                     $user,
                     'test_pass'
-                ));
+                ))
+                ->setPhoneNumber('447000000000');
 
             $manager->persist($user);
 
