@@ -2,53 +2,68 @@
 
 namespace App\Util;
 
-use Nexmo\Client as VonageClient;
-use Nexmo\Client\Credentials\Keypair;
-use Nexmo\Call\Call as VonageCall;
+use Vonage\Call\Call as VonageCall;
+use Vonage\Client as VonageClient;
+use Vonage\Client\Credentials\Basic;
+use Vonage\Client\Credentials\Keypair;
+use Vonage\SMS\Message\SMS;
+use Vonage\Voice\Endpoint\Phone;
+use Vonage\Voice\NCCO;
+use Vonage\Voice\NCCO\Action\Talk;
+use Vonage\Voice\OutboundCall;
+use Vonage\Voice\Webhook;
 
 class VonageUtil
 {
-    protected $client;
+    /** @var VonageClient */
+    protected $smsClient;
+
+    /** @var VonageClient */
+    protected $voiceClient;
 
     public function __construct()
     {
+        $basic = new Basic(
+            $_ENV['VONAGE_API_KEY'],
+            $_ENV['VONAGE_API_SECRET']
+        );
+
+        $this->smsClient = new VonageClient($basic);
+
         $keypair = new Keypair(
             file_get_contents($_ENV['VONAGE_APPLICATION_PRIVATE_KEY_PATH']),
             $_ENV['VONAGE_APPLICATION_ID']
         );
 
-        $this->client = new VonageClient($keypair);
+        $this->voiceClient = new VonageClient($keypair);
     }
 
-    public function sendPushNotification()
+    public function sendSms($to, $from, $text): bool
     {
+        $response = $this->smsClient->sms()->send(
+            new SMS($to, $from, $text)
+        );
 
-    }
+        $message = $response->current();
 
-    public function sendSms($to, $from, $text)
-    {
-        $message = $this->client->message()->send([
-            'to' => $to,
-            'from' => $from,
-            'text' => $text
-        ]);
+        if ($message->getStatus() == 0) {
+            return true;
+        }
+
+        return false;
     }
 
     public function makePhoneCall($to, $from, $text)
     {
-        $ncco = [
-            [
-              'action' => 'talk',
-              'voiceName' => 'Joey',
-              'text' => $text
-            ]
-        ];
+        $outboundCall = new OutboundCall(
+            new Phone($to),
+            new Phone($from)
+        );
 
-        $call = new VonageCall();
-        $call->setTo($to)
-            ->setFrom($from)
-            ->setNcco($ncco);
+        $ncco = new NCCO();
+        $ncco->addAction(new Talk($text));
+        $outboundCall->setNCCO($ncco);
 
-        $this->client->calls()->create($call);
+        $this->voiceClient->voice()->createOutboundCall($outboundCall);
     }
 }
