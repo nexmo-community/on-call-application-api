@@ -8,7 +8,7 @@ use Vonage\Client\Credentials\Basic;
 use Vonage\Client\Credentials\Keypair;
 use Vonage\SMS\Message\SMS;
 use Vonage\Voice\Endpoint\Phone;
-use Vonage\Voice\NCCO;
+use Vonage\Voice\NCCO\NCCO;
 use Vonage\Voice\NCCO\Action\Talk;
 use Vonage\Voice\OutboundCall;
 use Vonage\Voice\Webhook;
