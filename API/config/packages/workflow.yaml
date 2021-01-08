@@ -1,0 +1,32 @@
+framework:
+    workflows:
+        alerts:
+            type: 'state_machine'
+            supports:
+                - App\Entity\Alert
+            marking_store:
+                type: 'method'
+                property: 'status'
+            initial_marking: new
+            places:
+                - new
+                - raised
+                - accepted
+                - cancelled
+                - completed
+            transitions:
+                raise:
+                    from: [new]
+                    to: raised
+                accept:
+                    from: [raised]
+                    to: accepted
+                cancel:
+                    from: [raised, accepted]
+                    to: cancelled
+                complete:
+                    from: [accepted]
+                    to: completed
+                accepting:
+                    from: [raised]
+                    to: accepted
