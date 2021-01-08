@@ -52,6 +52,11 @@ class User implements UserInterface
      */
     private $userAlerts;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $phoneNumber;
+
     public function __construct()
     {
         $this->onCalls = new ArrayCollection();
@@ -196,6 +201,18 @@ class User implements UserInterface
                 $userAlert->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
