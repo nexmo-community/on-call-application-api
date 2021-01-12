@@ -12,20 +12,15 @@ class OnCallFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 20; $i++) {
-            $currentWeek = CarbonImmutable::now()
-                ->addWeeks($i);
+        $currentWeek = CarbonImmutable::now();
 
-            // exit;
-            $onCall = new OnCall();
-            $onCall
-                ->setUser($this->getReference('user_' . rand(0, 4)))
-                ->setStartDate($currentWeek->startOfWeek())
-                ->setEndDate($currentWeek->endOfWeek());
+        $onCall = new OnCall();
+        $onCall
+            ->setUser($this->getReference('user_1'))
+            ->setStartDate($currentWeek->startOfWeek())
+            ->setEndDate($currentWeek->endOfWeek());
 
-            $manager->persist($onCall);
-
-        }
+        $manager->persist($onCall);
 
         $manager->flush();
     }

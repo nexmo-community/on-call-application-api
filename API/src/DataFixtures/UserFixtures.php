@@ -19,20 +19,18 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($userCount = 0; $userCount < 5; $userCount++) {
-            $user = new User();
-            $user
-                ->setEmail('dev+' . $userCount . '@company.com')
-                ->setPassword($this->passwordEncoder->encodePassword(
-                    $user,
-                    'test_pass'
-                ))
-                ->setPhoneNumber('447000000000');
+        $user = new User();
+        $user
+            ->setEmail('dev+1@company.com')
+            ->setPassword($this->passwordEncoder->encodePassword(
+                $user,
+                'test_pass'
+            ))
+            ->setPhoneNumber(getenv('ON_CALL_NUMBER'));
 
-            $manager->persist($user);
+        $manager->persist($user);
 
-            $this->addReference('user_' . $userCount, $user);
-        }
+        $this->addReference('user_1', $user);
 
         $manager->flush();
     }
