@@ -1,3 +1,24 @@
+![Vonage][logo]
+
+# Stream Audio Into a Call With PHP
+
+This repository is the complete example for the accompanying post at: [#](#)
+
+**Table of Contents**
+
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+- [Code of Conduct](#code-of-conduct)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Prerequisites
+
+- A phone number
+- [A Vonage account](https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=https://github.com/nexmo-community/stream-audio-into-call-php)
+- [Docker](http://getcomposer.org/)
+- [Ngrok](https://learn.vonage.com/blog/2017/07/04/local-development-nexmo-ngrok-tunnel-dr)
+
 ## Set up
 
 ### Generate JWT keypair
@@ -102,5 +123,24 @@ bin/console app:escalate-alert
 
 On a successful command, you'll receive a voice call instructing you of the following: "A new alert has been raised, please log into the mobile app to investigate."
 
+## Code of Conduct
 
+In the interest of fostering an open and welcoming environment, we strive to make participation in our project and our community a harassment-free experience for everyone. Please check out our [Code of Conduct][coc] in full.
 
+## Contributing
+We :heart: contributions from everyone! Check out the [Contributing Guidelines][contributing] for more information.
+
+[![contributions welcome][contribadge]][issues]
+
+## License
+
+This project is subject to the [MIT License][license]
+
+[logo]: vonage_logo.png "Vonage"
+[contribadge]: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat "Contributions Welcome"
+
+[coc]: CODE_OF_CONDUCT.md "Code of Conduct"
+[contributing]: CONTRIBUTING.md "Contributing"
+[license]: LICENSE "MIT License"
+
+[issues]: ./../../issues "Issues"
