@@ -8,6 +8,13 @@ This repository is the complete example for the accompanying post at: [#](#)
 
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
+    * [Generate JWT keypair](#generate-jwt-keypair)
+    * [Exposing your application to the internet](#exposing-your-application-to-the-internet)
+    * [Environment Variables](#environment-variables)
+    * [Start Docker](#start-docker)
+    * [Database Migrations](#database-migrations)
+    * [Data Fixtures](#data-fixtures)
+- [Test It](#test-it)
 - [Code of Conduct](#code-of-conduct)
 - [Contributing](#contributing)
 - [License](#license)
@@ -15,11 +22,11 @@ This repository is the complete example for the accompanying post at: [#](#)
 ## Prerequisites
 
 - A phone number
-- [A Vonage account](https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=https://github.com/nexmo-community/stream-audio-into-call-php)
+- [A Vonage account](https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=)
 - [Docker](http://getcomposer.org/)
 - [Ngrok](https://learn.vonage.com/blog/2017/07/04/local-development-nexmo-ngrok-tunnel-dr)
 
-## Set up
+## Getting Started
 
 ### Generate JWT keypair
 
@@ -82,7 +89,7 @@ JWT_PASSPHRASE=<your jwt passphrase>
 
 Finally, in the same file find `ON_CALL_NUMBER=` and add your own phone number to this value. It will need to be a real number and able to receive SMS and voice calls.
 
-### Starting Docker
+### Start Docker
 
 ```bash
 cd Docker
@@ -101,7 +108,7 @@ php bin/console doctrine:migrations:migrate
 php bin/console doctrine:fixtures:load
 ```
 
-### Test it
+## Test it
 
 Make a POST request to `<ngrok Url>/webhooks/raise_alert` replacing the `<` and `>` with your ngrok url. The content type of the post request needs to be `application/json` and the body of the request needs to be similar to the following:
 
