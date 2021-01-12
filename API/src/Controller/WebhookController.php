@@ -88,6 +88,14 @@ class WebhookController extends AbstractController
         return new JsonResponse($this->getErrorMessages($form), 400);
     }
 
+    /**
+     * @Route("/event", name="event", methods={"POST, GET"})
+     */
+    public function event(Request $request)
+    {
+        return new JsonResponse([], 200);
+    }
+
     private function getErrorMessages(Form $form): array
     {
         $errors = [];
