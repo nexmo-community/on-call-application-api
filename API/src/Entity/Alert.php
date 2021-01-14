@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AlertRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,36 +10,6 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use DateTime;
 
 /**
- * @ApiResource(
- *     collectionOperations={"get"},
- *     itemOperations={
- *          "get",
- *          "accept_alert"={
- *             "route_name"="api_alerts_accept",
- *             "method"="POST",
- *             "openapi_context"={
- *                  "summary"="Accepts an alert resource",
- *                  "parameters"={}
- *              }
- *          },
- *          "complete_alert"={
- *             "route_name"="api_alerts_complete",
- *             "method"="POST",
- *             "openapi_context"={
- *                  "summary"="Completes an alert resource",
- *                  "parameters"={}
- *              }
- *          },
- *          "cancel_alert"={
- *             "route_name"="api_alerts_cancel",
- *             "method"="POST",
- *             "openapi_context"={
- *                  "summary"="Cancel an alert resource",
- *                  "parameters"={}
- *              }
- *          },
- *     }
- * )
  * @ORM\Entity(repositoryClass=AlertRepository::class)
  */
 class Alert
@@ -152,5 +121,15 @@ class Alert
         }
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription(),
+            'status' => $this->getStatus()
+        ];
     }
 }

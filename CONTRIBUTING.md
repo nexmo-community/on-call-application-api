@@ -116,7 +116,7 @@ Alternatively, you can raise an issue on the project.
 [pullrequest]: PULL_REQUEST_TEMPLATE.md "Pull Request template"
 
 [community]: https://developer.nexmo.com/community "Vonage Community"
-[signup]: https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=lukeocodes
+[signup]: https://dashboard.nexmo.com/sign-up?utm_source=DEV_REL&utm_medium=github&utm_campaign=gregholmes
 [slack]: https://developer.nexmo.com/community/slack "Vonage Community Slack"
 [twitter]: https://twitter.com/VonageDev "VonageDev on Twitter"
 

@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserAlertRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use DateTime;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=UserAlertRepository::class)
  */
 class UserAlert
