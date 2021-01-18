@@ -28,7 +28,7 @@ class AlertsApiController extends AbstractController
     }
 
     /**
-     * @Route("/", methods={"GET"})
+     * @Route("", methods={"GET"})
      */
     public function listAction(): JsonResponse
     {
