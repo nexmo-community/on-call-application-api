@@ -90,7 +90,7 @@ class AlertsApiController extends AbstractController
 
             $this->entityManager->flush();
         } catch (LogicException $exception) {
-            // ...
+            return new JsonResponse(['message' => $exception->getMessage()], 400);
         }
 
         return new JsonResponse([], 200);
@@ -116,7 +116,7 @@ class AlertsApiController extends AbstractController
 
             $this->entityManager->flush();
         } catch (LogicException $exception) {
-            // ...
+            return new JsonResponse(['message' => $exception->getMessage()], 400);
         }
 
         return new JsonResponse([], 200);
@@ -142,7 +142,7 @@ class AlertsApiController extends AbstractController
 
             $this->entityManager->flush();
         } catch (LogicException $exception) {
-            // ...
+            return new JsonResponse(['message' => $exception->getMessage()], 400);
         }
 
         return new JsonResponse([], 200);

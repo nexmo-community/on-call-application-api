@@ -38,7 +38,7 @@ class WebhookController extends AbstractController
     /**
      * @Route("/raise_alert", name="raise_alert", methods={"POST"})
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
@@ -60,8 +60,7 @@ class WebhookController extends AbstractController
                 ->findOnCallByWeek(Carbon::now());
 
             if (!$onCall) {
-                // Throw exception here. There is no on call user
-                dump('no oncall exists'); exit;
+                return new JsonResponse(['message' => 'No Alerts found.'], 400);
             }
 
             // Create a UserAlert
@@ -91,7 +90,7 @@ class WebhookController extends AbstractController
     /**
      * @Route("/event", name="event", methods={"POST, GET"})
      */
-    public function event(Request $request)
+    public function event(Request $request): JsonResponse
     {
         return new JsonResponse([], 200);
     }

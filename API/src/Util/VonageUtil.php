@@ -38,7 +38,7 @@ class VonageUtil
         $this->voiceClient = new VonageClient($keypair);
     }
 
-    public function sendSms($to, $from, $text): bool
+    public function sendSms(string $to, string $from, string $text): bool
     {
         $response = $this->smsClient->sms()->send(
             new SMS($to, $from, $text)
@@ -53,7 +53,7 @@ class VonageUtil
         return false;
     }
 
-    public function makePhoneCall($to, $from, $text)
+    public function makePhoneCall(string $to, string $from, string $text)
     {
         $outboundCall = new OutboundCall(
             new Phone($to),
