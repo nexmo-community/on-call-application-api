@@ -123,13 +123,28 @@ class Alert
         return $this;
     }
 
+    public function getUserAssigned(): ?User
+    {
+        if ($this->getUserAlerts()->isEmpty()) {
+            return null;
+        }
+
+        return $this
+            ->getUserAlerts()
+            ->first()
+            ->getUser();
+    }
+
     public function toArray()
     {
         return [
             'id' => $this->getId(),
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
-            'status' => $this->getStatus()
+            'status' => $this->getStatus(),
+            'dateRaised' => $this->getCreatedAt()->format('Y-m-d H:i:s'),
+            'assigned' => $this->getUserAssigned()->getName(),
+            'incidentId' => $this->getId()
         ];
     }
 }
