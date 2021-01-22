@@ -27,6 +27,3 @@ framework:
                 complete:
                     from: [accepted]
                     to: completed
-                accepting:
-                    from: [raised]
-                    to: accepted
