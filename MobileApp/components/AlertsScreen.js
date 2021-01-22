@@ -27,6 +27,12 @@ class AlertsScreen extends Component {
       .catch((err) => console.log(err));
   }
 
+  onPress = (item) => {
+    return this.props.navigation.navigate('Alert', {
+      alert: item,
+    })
+  }
+
   renderItem = ({ item }) => (
     <View style={styles.item}>
       <TouchableOpacity onPress={() => this.onPress(item)}>
@@ -49,12 +55,6 @@ class AlertsScreen extends Component {
       </TouchableOpacity>
     </View>
   );
-
-  onPress = (item) => {
-    return this.props.navigation.navigate('Alert', {
-      alert: item,
-    })
-  }
 
   render() {
     return (
