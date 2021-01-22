@@ -130,6 +130,16 @@ bin/console app:escalate-alert
 
 On a successful command, you'll receive a voice call instructing you of the following: "A new alert has been raised, please log into the mobile app to investigate."
 
+## Run the App
+
+In a new Terminal run the following two commands:
+
+```bash
+cd MobileApp
+npm install
+expo start
+```
+
 ## Code of Conduct
 
 In the interest of fostering an open and welcoming environment, we strive to make participation in our project and our community a harassment-free experience for everyone. Please check out our [Code of Conduct][coc] in full.
