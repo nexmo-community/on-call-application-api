@@ -1,8 +1,8 @@
 ![Vonage][logo]
 
-# Stream Audio Into a Call With PHP
+# Build an On-Call Application With Symfony, React Native and Vonage
 
-This repository is the complete example for the accompanying post at: [#](#)
+This repository is the complete example for the accompanying post at: [Community Repository](https://github.com/nexmo-community/on-call-application-api)
 
 **Table of Contents**
 
