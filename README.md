@@ -9,7 +9,7 @@ This repository is the complete example for the accompanying post at: [Community
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
     * [Generate JWT keypair](#generate-jwt-keypair)
-    * [Exposing your application to the internet](#exposing-your-application-to-the-internet)
+    * [Exposing Your Application To the Internet](#exposing-your-application-to-the-internet)
     * [Environment Variables](#environment-variables)
     * [Start Docker](#start-docker)
     * [Database Migrations](#database-migrations)
@@ -38,7 +38,7 @@ openssl genpkey -out API/var/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa
 openssl pkey -in API/var/jwt/private.pem -out API/var/jwt/public.pem -pubout
 ```
 
-### Exposing your application to the internet
+### Exposing Your Application To the Internet
 
 Making a phone call with Vonage, requires a virtual phone number with a webhook to log the events that happen when a phone call is made, answered, rejected, or ended. For the tutorial, ngrok is the service of choice to expose the application to the Internet. Install ngrok, and run the following command:
 
