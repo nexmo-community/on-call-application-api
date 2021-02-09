@@ -1,0 +1,9 @@
+# Default configuration for "VonageClientBundle"
+vonage_client:
+    api_key:              '%env(VONAGE_API_KEY)%'
+    api_secret:           '%env(VONAGE_API_SECRET)%'
+    signature_secret:     ~
+    signature_method:     ~
+    private_key:          '%env(VONAGE_APPLICATION_PRIVATE_KEY)%'
+    private_key_path:     '%env(VONAGE_APPLICATION_PRIVATE_KEY_PATH)%'
+    application_id:       '%env(VONAGE_APPLICATION_ID)%'

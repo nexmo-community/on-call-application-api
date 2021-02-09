@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a01e1ced4fb5d7b2523464f834972f77",
+    "content-hash": "502c2ea51a181e5fbbae941aca0bb5fd",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -7845,6 +7845,47 @@
                 "source": "https://github.com/Nexmo/vonage-php-nexmo-bridge/tree/master"
             },
             "time": "2020-08-25T02:50:42+00:00"
+        },
+        {
+            "name": "vonage/symfony",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nexmo/vonage-php-symfony-bundle.git",
+                "reference": "38e1a5bc3c0903bd46164906860942ed1f4b97bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nexmo/vonage-php-symfony-bundle/zipball/38e1a5bc3c0903bd46164906860942ed1f4b97bc",
+                "reference": "38e1a5bc3c0903bd46164906860942ed1f4b97bc",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "^5.1",
+                "vonage/client": "^2.4"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Vonage\\ClientBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Tankersley",
+                    "email": "chris@ctankersley.com"
+                }
+            ],
+            "description": "Provides config and dependency injection for the Vonage Client in Symfony applications",
+            "support": {
+                "issues": "https://github.com/Nexmo/vonage-php-symfony-bundle/issues",
+                "source": "https://github.com/Nexmo/vonage-php-symfony-bundle/tree/0.2.0"
+            },
+            "time": "2020-11-19T22:19:19+00:00"
         },
         {
             "name": "webmozart/assert",
