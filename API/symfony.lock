@@ -488,6 +488,9 @@
     "vonage/nexmo-bridge": {
         "version": "0.1.0"
     },
+    "vonage/symfony": {
+        "version": "0.2.0"
+    },
     "webmozart/assert": {
         "version": "1.9.1"
     }

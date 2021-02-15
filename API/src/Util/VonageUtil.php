@@ -2,45 +2,28 @@
 
 namespace App\Util;
 
-use Vonage\Call\Call as VonageCall;
-use Vonage\Client as VonageClient;
-use Vonage\Client\Credentials\Basic;
-use Vonage\Client\Credentials\Keypair;
+use Vonage\Client;
 use Vonage\SMS\Message\SMS;
 use Vonage\Voice\Endpoint\Phone;
 use Vonage\Voice\NCCO\NCCO;
 use Vonage\Voice\NCCO\Action\Talk;
 use Vonage\Voice\OutboundCall;
-use Vonage\Voice\Webhook;
 
 class VonageUtil
 {
-    /** @var VonageClient */
-    protected $smsClient;
+    /**
+     * @var Client
+     */
+    protected $client;
 
-    /** @var VonageClient */
-    protected $voiceClient;
-
-    public function __construct()
+    public function __construct(Client $client)
     {
-        $basic = new Basic(
-            $_ENV['VONAGE_API_KEY'],
-            $_ENV['VONAGE_API_SECRET']
-        );
-
-        $this->smsClient = new VonageClient($basic);
-
-        $keypair = new Keypair(
-            file_get_contents($_ENV['VONAGE_APPLICATION_PRIVATE_KEY_PATH']),
-            $_ENV['VONAGE_APPLICATION_ID']
-        );
-
-        $this->voiceClient = new VonageClient($keypair);
+        $this->client = $client;
     }
 
     public function sendSms(string $to, string $from, string $text): bool
     {
-        $response = $this->smsClient->sms()->send(
+        $response = $this->client->sms()->send(
             new SMS($to, $from, $text)
         );
 
@@ -64,6 +47,6 @@ class VonageUtil
         $ncco->addAction(new Talk($text));
         $outboundCall->setNCCO($ncco);
 
-        $this->voiceClient->voice()->createOutboundCall($outboundCall);
+        $this->client->voice()->createOutboundCall($outboundCall);
     }
 }
