@@ -33,7 +33,7 @@
         "symfony/validator": "5.2.*",
         "symfony/workflow": "5.2.*",
         "symfony/yaml": "5.2.*",
-        "vonage/client": "^2.4"
+        "vonage/symfony": "^0.2.0"
     },
     "config": {
         "optimize-autoloader": true,
