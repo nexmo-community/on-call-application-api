@@ -15,9 +15,9 @@ class LoginScreen extends Component {
 
   login = () => {
     authenticateUser(this.state.email, this.state.password)
-      .then((authenticated) => {
+      .then(async (authenticated) => {
         if (typeof(authenticated.data.token) != "undefined") {
-          if (SecureStore.isAvailableAsync()) {
+          if (await SecureStore.isAvailableAsync()) {
             SecureStore.setItemAsync('Auth', authenticated.data.token)
               .then(() => {
                 console.log('You Successfully logged in!');

@@ -9,8 +9,8 @@ export function getClient() {
       })
   };
   
-function getApiToken() {
-    if (SecureStore.isAvailableAsync()) {
+async function getApiToken() {
+    if (await SecureStore.isAvailableAsync()) {
         return SecureStore.getItemAsync('Auth')
         .then(response => {
             return response;
@@ -27,7 +27,7 @@ function buildClient(apiToken) {
         headers.Authorization = `Bearer ${apiToken}`;
     }
 
-    client = axios.create({
+    const client = axios.create({
         baseURL: configData.APIURL,
         timeout: 31000,
         headers: headers,
